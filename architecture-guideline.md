@@ -268,6 +268,31 @@ export async function fetchUser(): Promise<User> {
 - Always handle API errors
 - Use `getApiErrorMessage()` for consistent UX
 
+### Environment Variables
+
+- Use `.env` files to store environment-specific configuration
+- Follow the naming convention `NAME_APP_*` for all variables (App Name as prefix)
+- Never commit sensitive values to version control
+
+Example `.env` structure:
+```plaintext
+NAME_APP_API_URL=https://api.example.com
+NAME_APP_ENV=development
+NAME_APP_VERSION=$npm_package_version
+```
+
+Usage in code:
+```typescript
+const apiUrl = import.meta.env.NAME_APP_API_URL;
+const environment = import.meta.env.NAME_APP_ENV;
+```
+
+Best Practices:
+- Create `.env.example` with dummy values for documentation
+- Add `.env` to `.gitignore`
+- Use TypeScript declarations for environment variables
+- Validate required env variables on app startup
+
 ## 🎯 Performance Considerations
 
 - Use `React.memo` and `useMemo` for expensive computations
